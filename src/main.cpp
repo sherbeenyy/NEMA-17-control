@@ -10,22 +10,24 @@
  * D8 is ENABLE for all drivers (ESP32 GPIO 21)
  */
 
-const int X_STEP = 19;  // Nano Shield D5 (Real STEP pin)
-const int X_DIR  = 18;  // Nano Shield D2 (Real DIR pin)
+const int X_STEP = 19; // Nano Shield D5 (Real STEP pin)
+const int X_DIR = 18;  // Nano Shield D2 (Real DIR pin)
 
-const int Y_STEP = 25;  // Nano Shield D6 (Real STEP pin)
-const int Y_DIR  = 26;  // Nano Shield D3 (Real DIR pin)
+const int Y_STEP = 25; // Nano Shield D6 (Real STEP pin)
+const int Y_DIR = 26;  // Nano Shield D3 (Real DIR pin)
 
-const int Z_STEP = 32;  // Nano Shield D7 (Real STEP pin)
-const int Z_DIR  = 33;  // Nano Shield D4 (Real DIR pin)
+const int Z_STEP = 32; // Nano Shield D7 (Real STEP pin)
+const int Z_DIR = 33;  // Nano Shield D4 (Real DIR pin)
 
-const int PIN_ENABLE = 21;  // Nano Shield D8 (ENABLE - Active LOW, shared)
+const int PIN_ENABLE = 21; // Nano Shield D8 (ENABLE - Active LOW, shared)
 
-void stepMotor(int stepPin, int dirPin, long steps, bool clockwise, int pulseDelayMicros) {
+void stepMotor(int stepPin, int dirPin, long steps, bool clockwise, int pulseDelayMicros)
+{
   digitalWrite(dirPin, clockwise ? HIGH : LOW);
   delayMicroseconds(10);
 
-  for (long i = 0; i < steps; i++) {
+  for (long i = 0; i < steps; i++)
+  {
     digitalWrite(stepPin, HIGH);
     delayMicroseconds(pulseDelayMicros);
     digitalWrite(stepPin, LOW);
@@ -33,7 +35,8 @@ void stepMotor(int stepPin, int dirPin, long steps, bool clockwise, int pulseDel
   }
 }
 
-void setup() {
+void setup()
+{
   Serial.begin(115200);
   delay(1000);
   Serial.println("\n==============================================");
@@ -55,7 +58,8 @@ void setup() {
   delay(1000);
 }
 
-void loop() {
+void loop()
+{
   // ===== X MOTOR =====
   // Rotate Clockwise for 2000 steps at 800us delay (reliable, strong torque)
   Serial.println(">>> X: Rotating Clockwise (2000 steps)...");
